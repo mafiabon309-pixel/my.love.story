@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2b091c, #12030a);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.4);
+            animation: floatUp 5s linear infinite;
+            z-index: 0;
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Loader / Progress screen */
+        .loader-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3);
+            transition: width 0.1s linear;
+        }
+
+        /* Envelope Screen */
+        .envelope-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Slides / Cards */
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            padding: 0 10px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            border: none;
+            color: white;
+            padding: 12px 35px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-option {
+            flex: 1;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Music Player style */
+        .vinyl {
+            width: 120px;
+            height: 120px;
+            background: #111;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 6px solid #ff4b2b;
+            box-shadow: 0 0 20px rgba(255, 75, 43, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 4s linear infinite;
+        }
+
+        .vinyl-inner {
+            width: 40px;
+            height: 40px;
+            background: #ff416c;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .sound-waves {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .wave {
+            width: 4px;
+            height: 20px;
+            background: #ff7eb3;
+            animation: waveAnim 0.8s infinite ease-in-out alternate;
+        }
+
+        .wave:nth-child(2) { animation-delay: 0.2s; }
+        .wave:nth-child(3) { animation-delay: 0.4s; }
+        .wave:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes waveAnim {
+            0% { height: 10px; }
+            100% { height: 35px; }
+        }
+
+        #no-btn {
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .ring-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .timer-grid {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px;
+            border-radius: 12px;
+            min-width: 70px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff7eb3;
+        }
+
+        .time-box small {
+            font-size: 0.7rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Local Audio File with 5 times repeat limit -->
+    <audio id="bg-music">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Background Floating Hearts Container -->
+    <div id="bg-hearts"></div>
+
+    <div class="container">
+        <!-- STEP 1: Loader / Initializing -->
+        <div id="step-loader" class="loader-box">
+            <h2 id="loader-text">Initializing Love.exe...</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="progress-val" style="font-size: 0.9rem; color: #ff7eb3;">3%</p>
+        </div>
+
+        <!-- STEP 2: Envelope Arrived -->
+        <div id="step-envelope" class="hidden">
+            <div class="envelope-icon">💌</div>
+            <h3 style="margin-bottom: 10px; font-size: 1.3rem;">A LETTER ARRIVED</h3>
+            <p style="font-size: 0.85rem; color: #ccc; margin-bottom: 20px;">tap to open & play music</p>
+            <button class="btn-primary" onclick="startExperience()">Open Letter 🎶</button>
+        </div>
+
+        <!-- STEP 3 to 7: Message Slides -->
+        <div id="step-message" class="hidden">
+            <p style="color: #ff7eb3; font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">for you</p>
+            <div class="card-title" id="msg-text">Hey Jaan... Pata hai... Main ye sab normally bol nahi pata... Lekin aaj dil ne kaha... Risk le le... Kyuki kuch log baar baar nahi milte.</div>
+            <button class="btn-primary" id="msg-next-btn" onclick="nextMessage()">Next</button>
+        </div>
+
+        <!-- STEP 8: Choices / Questions -->
+        <div id="step-choice" class="hidden">
+            <p style="font-size: 2rem; margin-bottom: 10px;" id="choice-icon">☕</p>
+            <h3 class="card-title" id="choice-title" style="min-height: 40px; margin-bottom: 20px;">Coffee Date?</h3>
+            <div class="btn-group">
+                <button class="btn-option" onclick="recordChoice('Coffee Date', 'YES')" id="choice-btn1">YES</button>
+                <button class="btn-option" onclick="recordChoice('Coffee Date', 'OF COURSE')" id="choice-btn2">OF COURSE</button>
+            </div>
+        </div>
+
+        <!-- STEP 9: Music / Vibe Player -->
+        <div id="step-music" class="hidden">
+            <div class="vinyl">
+                <div class="vinyl-inner"></div>
+            </div>
+            <div class="sound-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Us ❤️</h3>
+            <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">Our Story</p>
+            <div class="card-title" style="min-height: 50px; font-size: 0.95rem;" id="lyrics-text">Tum sirf meri favourite person nahi ho... Tum meri favourite feeling ho. 💕</div>
+            <button class="btn-primary" onclick="toProposal()">❤️ Continue</button>
+        </div>
+
+        <!-- STEP 10: Final Proposal -->
+        <div id="step-proposal" class="hidden">
+            <h3 class="card-title" style="font-size: 1.3rem; margin-bottom: 15px;">Kya Tum Meri Girlfriend Banogi? ❤️</h3>
+            <p style="font-size: 1.5rem; margin-bottom: 20px;">💖</p>
+            <div class="btn-group" style="position: relative; height: 60px;">
+                <button class="btn-primary" style="flex: 1; height: 45px;" onclick="sayYes()">✨ YES</button>
+                <button class="btn-option" id="no-btn" style="flex: 1; height: 45px; background: rgba(255,255,255,0.08);" onmouseover="moveNo()" onclick="moveNo()">NO 🥺</button>
+            </div>
+        </div>
+
+        <!-- STEP 11: Final Celebration Screen -->
+        <div id="step-success" class="hidden">
+            <div class="ring-icon">💍</div>
+            <h2 style="font-size: 1.4rem; color: #ff7eb3; margin-bottom: 10px;">YayYYYYYYYYY ❤️</h2>
+            <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; color: #ddd;">
+                Officially...<br>Ab tum meri favourite notification ho.<br>
+                <b>I Promise...</b><br>Har smile ki wajah banne ki puri koshish karunga.
+            </p>
+            
+            <h4 style="font-size: 0.8rem; letter-spacing: 1px; color: #aaa; margin-top: 10px;">TOGETHER SINCE</h4>
+            <div class="timer-grid">
+                <div class="time-box">
+                    <span id="days">0</span>
+                    <small>DAYS</small>
+                </div>
+                <div class="time-box">
+                    <span id="hours">0</span>
+                    <small>HOURS</small>
+                </div>
+                <div class="time-box">
+                    <span id="mins">0</span>
+                    <small>MINUTES</small>
+                </div>
+                <div class="time-box">
+                    <span id="secs">0</span>
+                    <small>SECONDS</small>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #ff7eb3; margin-top: 15px; font-style: italic;">Some Love Stories Start With One Click. ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        let activityLog = [];
+
+        function logAction(actionName) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString() + "." + String(now.getMilliseconds()).padStart(3, '0');
+            activityLog.push(`[${timeString}] ${actionName}`);
+        }
+
+        // Initial log
+        logAction("Website opened / Initialized");
+
+        // Floating hearts generator
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.getElementById('bg-hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+
+        let progress = 3;
+        const fill = document.getElementById('progress-fill');
+        const pVal = document.getElementById('progress-val');
+        const loaderText = document.getElementById('loader-text');
+
+        const texts = [
+            {at: 3, text: "Initializing Love.exe..."},
+            {at: 45, text: "Searching for the prettiest smile..."},
+            {at: 79, text: "Found 1 Result ❤️"},
+            {at: 97, text: "Loading memories..."}
+        ];
+
+        let loadInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 4) + 1;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadInterval);
+                setTimeout(() => {
+                    document.getElementById('step-loader').classList.add('hidden');
+                    document.getElementById('step-envelope').classList.remove('hidden');
+                    logAction("Envelope screen appeared");
+                }, 500);
+            }
+            fill.style.width = progress + '%';
+            pVal.innerText = progress + '%';
+
+            texts.forEach(t => {
+                if(progress === t.at) loaderText.innerText = t.text;
+            });
+        }, 50);
+
+        // Music 5 times repeat logic
+        let playCount = 0;
+        const maxPlays = 5;
+        const music = document.getElementById('bg-music');
+
+        music.addEventListener('ended', function() {
+            playCount++;
+            if (playCount < maxPlays) {
+                music.currentTime = 0;
+                music.play();
+                logAction(`Song replayed (Loop count: ${playCount + 1})`);
+            } else {
+                logAction("Song finished 5 times and stopped");
+            }
+        });
+
+        function startExperience() {
+            music.play().then(() => {
+                logAction("Envelope opened & Music started playing");
+            }).catch(e => {
+                logAction("Music play blocked by browser");
+            });
+            document.getElementById('step-envelope').classList.add('hidden');
+            document.getElementById('step-message').classList.remove('hidden');
+            logAction("Moved to message screen 1");
+        }
+
+        const messages = [
+            "Jab bhi tum online aati ho... Mera mood automatically better ho jata hai.",
+            "Tumhare messages... Mere din ka favourite notification hote hain.",
+            "Honestly... Tum meri life ki sabse pyari coincidence ho."
+        ];
+        let msgIndex = 0;
+
+        function nextMessage() {
+            msgIndex++;
+            if (msgIndex < messages.length) {
+                document.getElementById('msg-text').innerText = messages[msgIndex];
+                logAction(`Viewed message slide ${msgIndex + 1}: "${messages[msgIndex]}"`);
+            } else {
+                document.getElementById('step-message').classList.add('hidden');
+                document.getElementById('step-choice').classList.remove('hidden');
+                logAction("Finished love messages, moved to choices screen");
+            }
+        }
+
+        const choicesData = [
+            {icon: "☕", title: "Coffee Date?", b1: "YES", b2: "OF COURSE"},
+            {icon: "🌸", title: "Long Walk?", b1: "YES", b2: "ALWAYS"},
+            {icon: "🌙", title: "Late Night Talks?", b1: "100%", b2: "FOREVER"}
+        ];
+        let choiceIndex = 0;
+
+        function recordChoice(question, answer) {
+            logAction(`Selected choice -> ${question}: ${answer}`);
+            choiceIndex++;
+            if (choiceIndex < choicesData.length) {
+                document.getElementById('choice-icon').innerText = choicesData[choiceIndex].icon;
+                document.getElementById('choice-title').innerText = choicesData[choiceIndex].title;
+                document.getElementById('choice-btn1').innerText = choicesData[choiceIndex].b1;
+                document.getElementById('choice-btn2').innerText = choicesData[choiceIndex].b2;
+                
+                document.getElementById('choice-btn1').setAttribute('onclick', `recordChoice('${choicesData[choiceIndex].title}', '${choicesData[choiceIndex].b1}')`);
+                document.getElementById('choice-btn2').setAttribute('onclick', `recordChoice('${choicesData[choiceIndex].title}', '${choicesData[choiceIndex].b2}')`);
+            } else {
+                document.getElementById('step-choice').classList.add('hidden');
+                document.getElementById('step-music').classList.remove('hidden');
+                logAction("Finished all choices, moved to music vibe screen");
+            }
+        }
+
+        function toProposal() {
+            document.getElementById('step-music').classList.add('hidden');
+            document.getElementById('step-proposal').classList.remove('hidden');
+            logAction("Moved to final proposal screen");
+        }
+
+        const noTexts = ["NO 🥺", "Nahi Na 🥺", "Sure? 🤨", "Soch lo 😭", "Please maan jao ❤️"];
+        let noClickCount = 0;
+
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            noClickCount = (noClickCount + 1) % noTexts.length;
+            btn.innerText = noTexts[noClickCount];
+            const x = (Math.random() - 0.5) * 60;
+            const y = (Math.random() - 0.5) * 40;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+            logAction(`Clicked/Hovered NO button (Text changed to: ${noTexts[noClickCount]})`);
+        }
+
+        function sayYes() {
+            logAction("Clicked YES! Proposal Accepted.");
+            document.getElementById('step-proposal').classList.add('hidden');
+            document.getElementById('step-success').classList.remove('hidden');
+            startTimer();
+
+            // Sending full chronological log with exact milliseconds to Formspree email
+            fetch("https://formspree.io/f/xqpebzpq", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    status: "Proposal Accepted! ❤️",
+                    full_activity_log: activityLog.join("\n")
+                })
+            }).then(response => {
+                console.log("Full log sent successfully!");
+            });
+        }
+
+        function startTimer() {
+            const startTime = new Date().getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const diff = Math.floor((now - startTime) / 1000);
+                
+                const days = Math.floor(diff / (3600 * 24));
+                const hours = Math.floor((diff % (3600 * 24)) / 3600);
+                const mins = Math.floor((diff % 3600) / 60);
+                const secs = diff % 60;
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('mins').innerText = mins;
+                document.getElementById('secs').innerText = secs;
+            }, 1000);
+        }
+    </script>
+</body>
+  </html>
+  
