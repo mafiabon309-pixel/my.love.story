@@ -1,0 +1,3 @@
+<audio id="bg-music">
+    <source src="mi.mp3" type="audio/mpeg">
+</audio>
